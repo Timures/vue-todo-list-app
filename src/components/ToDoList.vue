@@ -1,0 +1,13 @@
+<template>
+  <div>
+    <h1>Задачи</h1>
+    <div>
+      <input
+        id=""
+        type="text"
+        name=""
+      >
+      <button>Добавить</button>
+    </div>
+  </div>
+</template>

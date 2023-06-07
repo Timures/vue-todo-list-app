@@ -1,0 +1,13 @@
+@import url(../../../node_modules/normalize.css/normalize.css);
+@import './_variables.scss';
+@import './_common.scss';
+
+body {
+    background-color: #ececec;
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    color: #2e2d2d;
+}
+
+#app {}
