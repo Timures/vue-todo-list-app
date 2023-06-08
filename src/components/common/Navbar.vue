@@ -22,7 +22,7 @@ export default {
 @import "@/assets/styles/_variables.scss";
 
 .main-nav {
-  border: 1px solid red;
+  border-bottom: 1px solid #2c3e50;;
   padding: 1rem;
   display: flex;
   align-items: center;

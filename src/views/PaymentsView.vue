@@ -20,3 +20,9 @@ export default {
   }
 };
 </script>
+
+<style lang="scss" scoped>
+.payments {
+  max-width: 1024px;
+}
+</style>

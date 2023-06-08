@@ -1,19 +1,19 @@
 <template>
   <div class="user-item">
-    {{ user.name }}
-    <button @click="showModalUserTodos(user.id)">Задачи</button>
-    <button @click="showModalUserEdit(user.id)">Редактировать</button>
+    <div class="user-item__name"><span>Имя: </span>{{ user.name }}</div> 
+    <MyButton :disabled="false" @click="showModalUserTodos(user.id)">Задачи</MyButton>
+    <MyButton :disabled="false" @click="showModalUserEdit(user.id)">Редактировать</MyButton>
   </div>
 
   <Modal :visible="isModalTodosVisible" @close="closeModal">
     <template v-slot:header>
-      <h3>Задачи пользователя</h3>
+      <h3>Задачи пользователя: {{ user.name }}</h3>
     </template>
     <template v-slot:body>
       <TodosList :todos="userTodos"/>
     </template>
     <template v-slot:footer>
-      <button @click="closeModal">Закрыть</button>
+      <MyButton :disabled="false" :size="'small'" @click="closeModal">Закрыть</MyButton>
     </template>
   </Modal>
 
@@ -22,16 +22,26 @@
       <h3>Редактировать пользователя</h3>
     </template>
     <template v-slot:body>
-      {{ user.id }}
-      <form action="">
-        <input type="text" name="name" id="userName" v-model="userData.name">
-        <input type="text" name="phone" id="userPhone" v-model="userData.phone">
-        <input type="text" name="email" id="userEmail" v-model="userData.email">
-      </form>
-      <button @click="updateUser(user.id)">Сохранить</button>
+      <form class="user-form" @submit.prevent="updateUser(user.id)">
+    <div class="form-group">
+      <label for="name">Имя</label>
+      <input type="text" id="name" v-model="userData.name" required />
+    </div>
+    <div class="form-group">
+      <label for="phone">Номер телефона</label>
+      <input type="tel" id="phone" v-model="userData.phone" required />
+    </div>
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="email" id="email" v-model="userData.email" required />
+    </div>
+    <div class="form-actions">
+      <MyButton :disabled="false" type="submit">Сохранить</MyButton>
+    </div>
+  </form>
     </template>
     <template v-slot:footer>
-      <button @click="closeModal">Закрыть</button>
+      <MyButton :disabled="false" :size="'small'" @click="closeModal">Закрыть</MyButton>
     </template>
   </Modal>
 
@@ -40,6 +50,7 @@
 <script>
 import Modal from "@/components/common/MyModal";
 import TodosList from "@/components/todos/TodosList.vue";
+import MyButton from "@/components/common/UI/MyButton";
 export default {
   name: "user-item",
   props: {
@@ -50,7 +61,8 @@ export default {
   },
   components: {
     Modal,
-    TodosList
+    TodosList,
+    MyButton
   },
   data() {
     return {
@@ -112,9 +124,60 @@ export default {
   grid-template-rows: auto;
   align-items: center;
   column-gap: 0.5rem;
+
+  @media only screen and (max-width: 600px) {
+    grid-template-columns: auto;
+    grid-template-rows: auto auto;
+    row-gap: 0.5rem;
+  }
   &__name {
     font-size: 1.2rem;
     line-height: 143%;
+    span {
+      display: none;
+    }
+    @media only screen and (max-width: 600px) {
+      span {
+        display: inline-block;
+        font-size: 1rem;
+        font-weight: normal;
+      }
+      font-weight: bold;
+    }
   }
+}
+
+.user-form {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.form-group {
+  margin-bottom: 20px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 2fr;
+  column-gap: 00.5rem;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: right;
+}
+
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+  // width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
 }
 </style>

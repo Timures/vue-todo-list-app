@@ -50,13 +50,16 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.8);
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
 .modal-wrapper {
+  @media only screen and (max-width: 600px) {
+    width: auto;
+  }
   width: 500px;
   background-color: white;
   border-radius: 4px;
@@ -71,6 +74,7 @@ export default {
   align-items: center;
   justify-content: space-between;
   margin-bottom: 10px;
+  border-bottom: 1px solid #2c3e50;
 }
 
 .modal-title {
@@ -82,6 +86,8 @@ export default {
 }
 
 .modal-footer {
+  border-top: 1px solid #2c3e50;
+  padding-top: 1rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
