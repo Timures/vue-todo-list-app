@@ -7,11 +7,13 @@
       <h3>Действие</h3>
     </div>
     <ul>      
-      <li v-for="payment in payments" :key="payment.id">
+      <li
+        v-for="payment in payments"
+        :key="payment.id"
+      >
         <PaymentItem :payment="payment" />
-        <hr />
+        <hr>
       </li>
-      
     </ul>
   </div>
 </template>
@@ -19,7 +21,8 @@
 <script>
 import PaymentItem from "@/components/payments/PaymentItem";
 export default {
-  name: "payments-list",
+  name: "PaymentsList",
+  components: { PaymentItem },
   props: {
     payments: {
       type: Array,
@@ -28,7 +31,6 @@ export default {
       },
     },
   },
-  components: { PaymentItem },
 };
 </script>
 

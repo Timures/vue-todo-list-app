@@ -3,10 +3,14 @@
     <h1>Timures</h1>
     <ul>
       <li>
-        <router-link to="/">Пользователи</router-link>
+        <router-link to="/">
+          Пользователи
+        </router-link>
       </li>
       <li>
-        <router-link to="/payments">Платежи</router-link>
+        <router-link to="/payments">
+          Платежи
+        </router-link>
       </li>
     </ul>
   </nav>
@@ -14,7 +18,7 @@
 
 <script>
 export default {
-  name: "my-navbar",
+  name: "MyNavbar",
 };
 </script>
 

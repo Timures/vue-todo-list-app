@@ -1,19 +1,33 @@
 <template>
   <transition name="modal">
-    <div class="modal-mask" v-if="visible" @click="close">
-      <div class="modal-wrapper" @click.stop>
+    <div
+      v-if="visible"
+      class="modal-mask"
+      @click="close"
+    >
+      <div
+        class="modal-wrapper"
+        @click.stop
+      >
         <div class="modal-container">
           <div class="modal-header">
             <slot name="header">
-              <h3 class="modal-title">{{ title }}</h3>
+              <h3 class="modal-title">
+                {{ title }}
+              </h3>
             </slot>
           </div>
           <div class="modal-body">
-            <slot name="body"></slot>
+            <slot name="body" />
           </div>
           <div class="modal-footer">
             <slot name="footer">
-              <button class="modal-button" @click="close">Закрыть</button>
+              <button
+                class="modal-button"
+                @click="close"
+              >
+                Закрыть
+              </button>
             </slot>
           </div>
         </div>
@@ -24,7 +38,7 @@
 
 <script>
 export default {
-  name: 'my-modal',
+  name: 'MyModal',
   props: {
     title: {
       type: String,
@@ -35,6 +49,7 @@ export default {
       default: false,
     },
   },
+  emits:['close'],
   methods: {
     close() {
       this.$emit('close');

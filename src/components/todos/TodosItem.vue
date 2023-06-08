@@ -1,20 +1,25 @@
 <template>
-  <MyCheckbox :checked="todo.completed" :disabled="false">
-    <div :class="todo.completed ? 'completed': ''">{{ todo.title }}</div>
+  <MyCheckbox
+    :checked="todo.completed"
+    :disabled="false"
+  >
+    <div :class="todo.completed ? 'completed': ''">
+      {{ todo.title }}
+    </div>
   </MyCheckbox>
 </template>
 
 <script>
 import MyCheckbox from '@/components/common/MyCheckbox'
 export default {
-  name: "todos-item",
+  name: "TodosItem",
+  components: { MyCheckbox },
   props: {
     todo: {
       type: Object,
       default: () => {},
     },
   },
-  components: { MyCheckbox },
   data() {
     return {
       todoStatus: false,

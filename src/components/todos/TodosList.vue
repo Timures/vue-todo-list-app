@@ -1,8 +1,10 @@
 <template>
-  
   <div class="todos-list">
     <ul>
-      <li v-for="todo in todos" :key="todo.id">
+      <li
+        v-for="todo in todos"
+        :key="todo.id"
+      >
         <TodosItem :todo="todo" />
       </li>
     </ul>
@@ -12,7 +14,8 @@
 <script>
 import TodosItem from "@/components/todos/TodosItem";
 export default {
-  name: "payments-list",
+  name: "PaymentsList",
+  components: { TodosItem },
   props: {
     todos: {
       type: Array,
@@ -21,7 +24,6 @@ export default {
       },
     },
   },
-  components: { TodosItem },
 };
 </script>
 

@@ -1,13 +1,13 @@
 <template>
   <div class="loader-spinner">
     Загрузка...
-    <div class="spinner"></div>
+    <div class="spinner" />
   </div>
 </template>
 
 <script>
 export default {
-    name: "loader-spinner"
+    name: "LoaderSpinner"
 }
 </script>
 

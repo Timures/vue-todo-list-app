@@ -1,27 +1,46 @@
 <template>
-
-    <div class="payments-item">
-        <div class="payments-item__date"><span>Дата: </span>{{ payment.date }}</div>
-        <div class="payments-item__title"><span>Наименование: </span>{{ payment.title }}</div>
-        <div class="payments-item__summ"><span>Сумма: </span> {{ payment.summ }}</div>
-        <MyButton :disabled="false" @click="showModal">Подробнее</MyButton>
+  <div class="payments-item">
+    <div class="payments-item__date">
+      <span>Дата: </span>{{ payment.date }}
     </div>
+    <div class="payments-item__title">
+      <span>Наименование: </span>{{ payment.title }}
+    </div>
+    <div class="payments-item__summ">
+      <span>Сумма: </span> {{ payment.summ }}
+    </div>
+    <MyButton
+      :disabled="false"
+      @click="showModal"
+    >
+      Подробнее
+    </MyButton>
+  </div>
 
-  <Modal :visible="isModalVisible" @close="closeModal">
-    <template v-slot:header>
+  <Modal
+    :visible="isModalVisible"
+    @close="closeModal"
+  >
+    <template #header>
       <h3>Информация по платежу</h3>
     </template>
-    <template v-slot:body>
+    <template #body>
       <ul class="payment-info">
-        <li>ID: <strong>{{ payment.id}}</strong></li>
-        <li>Наименование: <strong>{{ payment.title}}</strong></li>
-        <li>Информация: <strong>{{ payment.desc}}</strong></li>
+        <li>ID: <strong>{{ payment.id }}</strong></li>
+        <li>Наименование: <strong>{{ payment.title }}</strong></li>
+        <li>Информация: <strong>{{ payment.desc }}</strong></li>
         <li>Сумма: <strong>{{ payment.summ }}</strong></li>
-        <li>Аккаунт ID: <strong>{{ payment.account}}</strong></li>
+        <li>Аккаунт ID: <strong>{{ payment.account }}</strong></li>
       </ul>
     </template>
-    <template v-slot:footer>
-      <MyButton :disabled="false" :size="'small'" @click="closeModal">Закрыть</MyButton>
+    <template #footer>
+      <MyButton
+        :disabled="false"
+        :size="'small'"
+        @click="closeModal"
+      >
+        Закрыть
+      </MyButton>
     </template>
   </Modal>
 </template>
@@ -31,16 +50,16 @@ import MyButton from "@/components/common/UI/MyButton";
 import Modal from "@/components/common/MyModal";
 
 export default {
-  name: "payment-item",
+  name: "PaymentItem",
+  components: {
+    MyButton,
+    Modal,
+  },
   props: {
     payment: {
       type: Object,
       default: () => {},
     },
-  },
-  components: {
-    MyButton,
-    Modal,
   },
   data() {
     return {

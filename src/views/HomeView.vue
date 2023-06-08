@@ -1,11 +1,15 @@
 <template>
   <main class="container users">
+    <h1>Пользователи</h1>
     <div class="users-header">
       <h3>Имя</h3>
       <h3>Задачи</h3>
       <h3>Действие</h3>
     </div>
-    <UsersList v-show="!showLoader" :users="users" />
+    <UsersList
+      v-show="!showLoader"
+      :users="users"
+    />
 
     <LoaderSpinner v-show="showLoader" />
   </main>

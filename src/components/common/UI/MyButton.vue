@@ -1,8 +1,11 @@
 <template>
-    <button :class="['button', variant, size, { disabled }]" :disabled="disabled">
-      <slot></slot>
-    </button>
-  </template>
+  <button
+    :class="['button', variant, size, { disabled }]"
+    :disabled="disabled"
+  >
+    <slot />
+  </button>
+</template>
   
   <script>
   export default {

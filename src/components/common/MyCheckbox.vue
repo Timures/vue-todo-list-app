@@ -3,11 +3,11 @@
     <input
       type="checkbox"
       :checked="checked"
-      @change="toggleChecked"
       :disabled="disabled"
-    />
-    <span class="checkmark"></span>
-    <slot></slot>
+      @change="toggleChecked"
+    >
+    <span class="checkmark" />
+    <slot />
   </label>
 </template>
 
@@ -23,6 +23,7 @@ export default {
       default: false
     }
   },
+  emits: ['update:checked'],
   data(){
     return {
         status: false
