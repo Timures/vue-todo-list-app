@@ -1,20 +1,26 @@
 <template>
   <main class="container users">
-    <h1>Пользователи</h1>
-    <UsersList :users="users" />
+
+      <UsersList v-show="!showLoader" :users="users" />
+
+      <LoaderSpinner v-show="showLoader" />
+    
   </main>
 </template>
 
 <script>
 import UsersList from '@/components/users/UsersList'
+import LoaderSpinner from '@/components/common/LoaderSpinner'
 export default {
   name: "HomeView",
   components: {
-    UsersList
+    UsersList,
+    LoaderSpinner
   },
   data(){
     return {
-      users: []
+      users: [],
+      showLoader: false
     }
   },
   mounted() {
@@ -22,6 +28,7 @@ export default {
   },
   methods: {
     fetchUsers() {
+      this.showLoader = true
       fetch('https://jsonplaceholder.typicode.com/users?limit=10')
         .then(response => response.json())
         .then(data => {
@@ -30,6 +37,7 @@ export default {
         .catch(error => {
           console.error('Ошибка при получении пользователей:', error);
         });
+        this.showLoader = false
     },
   },
 };
