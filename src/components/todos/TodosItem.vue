@@ -1,5 +1,5 @@
 <template>
-  <MyCheckbox :checked="todo.completed" :disabled="isDisabled">
+  <MyCheckbox :checked="todo.completed" :disabled="false">
     <div :class="todo.completed ? 'completed': ''">{{ todo.title }}</div>
   </MyCheckbox>
 </template>

@@ -80,7 +80,7 @@ export default {
   methods: {
     updateUser(user_id){
       this.$emit('update', user_id, this.userData)
-      console.log('user update ', user_id);
+      // console.log('user update ', user_id);
       this.isModalVisible = false
     },
     showModalUserTodos(user_id){
@@ -107,7 +107,7 @@ export default {
         .catch(error => {
           console.error('Ошибка при получении пользователей:', error);
         });
-      console.log('user name ', user_id);
+      // console.log('user name ', user_id);
     },
     closeModal() {
       this.isModalVisible = false;

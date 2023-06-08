@@ -21,7 +21,7 @@ export default {
   components: { UserItem },
   methods: {
     updateUser(user_id, userForm){
-      console.log('update user in list', user_id, userForm);
+      // console.log('update user in list', user_id, userForm);
     }
   }
 }
