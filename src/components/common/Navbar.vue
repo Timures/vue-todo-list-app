@@ -52,6 +52,7 @@ nav a {
   font-weight: bold;
   color: #2c3e50;
   text-decoration: none;
+  transition: 0.35s ease-in-out all;
   &:hover {
     color: $link_hover;
   }

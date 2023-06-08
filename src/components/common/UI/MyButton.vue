@@ -33,7 +33,7 @@
   };
   </script>
   
-  <style scoped>
+  <style lang="scss" scoped>
   .button {
     display: inline-block;
     padding: 10px 20px;
@@ -42,11 +42,15 @@
     font-weight: bold;
     text-align: center;
     cursor: pointer;
+    transition: 0.35s ease-in-out all;
   }
   
   .primary {
     background-color: #3f9cd1;
     color: #fff;
+    &:hover {
+      background-color: darken(#3f9cd1, 10);
+    }
   }
   
   .secondary {
