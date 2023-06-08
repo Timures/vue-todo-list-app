@@ -25,7 +25,11 @@
       <h3>Задачи пользователя: {{ user.name }}</h3>
     </template>
     <template #body>
-      <TodosList :todos="userTodos" />
+      <TodosList
+        v-show="!showLoader"
+        :todos="userTodos"
+      /> 
+      <LoaderSpinner v-show="showLoader" />
     </template>
     <template #footer>
       <MyButton
@@ -102,12 +106,14 @@
 <script>
 import Modal from "@/components/common/MyModal";
 import TodosList from "@/components/todos/TodosList.vue";
+import LoaderSpinner from "@/components/common/LoaderSpinner";
 import MyButton from "@/components/common/UI/MyButton";
 export default {
   name: "UserItem",
   components: {
     Modal,
     TodosList,
+    LoaderSpinner,
     MyButton
   },
   props: {
@@ -121,6 +127,7 @@ export default {
     return {
       isModalVisible: false,
       isModalTodosVisible: false,
+      showLoader: false,
       userTodos: [],
       userData: {
         name: '',

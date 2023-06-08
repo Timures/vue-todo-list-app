@@ -1,6 +1,9 @@
 <template>
   <nav class="main-nav">
-    <h1>Timures</h1>
+    <router-link to="/">
+      <h1>Timures</h1>
+    </router-link>
+    
     <ul>
       <li>
         <router-link to="/">
