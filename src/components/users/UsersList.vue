@@ -2,7 +2,7 @@
   <ul class="users-list">
     <li v-for="user in users"
       :key="user.id">
-      <UserItem :user="user" />
+      <UserItem :user="user" @update="updateUser" />
       <hr />
     </li>
   </ul>
@@ -19,7 +19,12 @@ export default {
     }
   },
   components: { UserItem },
-};
+  methods: {
+    updateUser(user_id, userForm){
+      console.log('update user in list', user_id, userForm);
+    }
+  }
+}
 </script>
 
 <style lang="scss">

@@ -2,7 +2,7 @@
   <div class="user-item">
     {{ user.name }}
     <button @click="showModalUserTodos(user.id)">Задачи</button>
-    <button @click="showModalUserEdit">Редактировать</button>
+    <button @click="showModalUserEdit(user.id)">Редактировать</button>
   </div>
 
   <Modal :visible="isModalTodosVisible" @close="closeModal">
@@ -22,12 +22,13 @@
       <h3>Редактировать пользователя</h3>
     </template>
     <template v-slot:body>
-      <ul>
-        <li>{{ user.id }}</li>
-        <li>{{ user.name }}</li>
-        <li>{{ user.phone }}</li>
-        <li>{{ user.email }}</li>
-      </ul>
+      {{ user.id }}
+      <form action="">
+        <input type="text" name="name" id="userName" v-model="userData.name">
+        <input type="text" name="phone" id="userPhone" v-model="userData.phone">
+        <input type="text" name="email" id="userEmail" v-model="userData.email">
+      </form>
+      <button @click="updateUser(user.id)">Сохранить</button>
     </template>
     <template v-slot:footer>
       <button @click="closeModal">Закрыть</button>
@@ -55,12 +56,23 @@ export default {
     return {
       isModalVisible: false,
       isModalTodosVisible: false,
-      userTodos: []
+      userTodos: [],
+      userData: {
+        name: '',
+        phone: '',
+        email: ''
+      }
     };
   },
+  emits:['update'],
   methods: {
+    updateUser(user_id){
+      this.$emit('update', user_id, this.userData)
+      console.log('user update ', user_id);
+      this.isModalVisible = false
+    },
     showModalUserTodos(user_id){
-        console.log('todos',user_id, `https://jsonplaceholder.typicode.com/user/${user_id}/todos?limit=10`)
+        // console.log('todos',user_id, `https://jsonplaceholder.typicode.com/user/${user_id}/todos?limit=10`)
         this.isModalTodosVisible = true
         fetch(`https://jsonplaceholder.typicode.com/user/${user_id}/todos?_limit=10`)
         .then(response => response.json())
@@ -71,8 +83,19 @@ export default {
           console.error('Ошибка при получении пользователей:', error);
         });
     },
-    showModalUserEdit() {
+    showModalUserEdit(user_id) {
       this.isModalVisible = true;
+      fetch(`https://jsonplaceholder.typicode.com/users/${user_id}`)
+        .then(response => response.json())
+        .then(data => {
+          this.userData.name = data.name; 
+          this.userData.phone = data.phone;
+          this.userData.email = data.email;
+        })
+        .catch(error => {
+          console.error('Ошибка при получении пользователей:', error);
+        });
+      console.log('user name ', user_id);
     },
     closeModal() {
       this.isModalVisible = false;
