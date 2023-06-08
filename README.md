@@ -1,5 +1,9 @@
 # vue-todo-list-payment
 
+# Stack
+- Vue 3
+- NodeJs > 16x
+
 ## Project setup
 ```
 yarn install
